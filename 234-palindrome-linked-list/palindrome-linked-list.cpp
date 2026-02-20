@@ -17,17 +17,29 @@ public:
         {
           v.push_back(temp->val);
           temp=temp->next;
-        }       
-        vector<int> s;
-        s.insert(s.end(),v.begin(),v.end());
-        reverse(s.begin(),s.end());
-        for(int i=0;i<v.size();i++)
+        } 
+        int l=0;
+        int r=v.size()-1;
+
+        while(l<r)
         {
-            if(v[i]!=s[i])
+            if(v[l]!=v[r])
             {
                 return false;
             }
+            l++;
+            r--;
         }
+        // vector<int> s;
+        // s.insert(s.end(),v.begin(),v.end());
+        // reverse(s.begin(),s.end());
+        // for(int i=0;i<v.size();i++)
+        // {
+        //     if(v[i]!=s[i])
+        //     {
+        //         return false;
+        //     }
+        // }
         return true;
     }
 };
