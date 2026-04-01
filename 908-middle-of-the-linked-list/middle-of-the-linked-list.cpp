@@ -23,11 +23,16 @@ public:
             temp = temp->next;
             c++;
         }
-        int mid = c/2;
+        int mid = c/2+1;
         temp=head;
-        while(mid>0)
+        while(temp!=NULL)
         {
+
             mid-=1;
+            if(mid==0)
+            {
+                break;
+            }
             temp=temp->next;
             
         }
