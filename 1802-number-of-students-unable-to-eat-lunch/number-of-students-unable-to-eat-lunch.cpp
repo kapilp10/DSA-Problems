@@ -1,31 +1,17 @@
 class Solution {
 public:
-    int countStudents(vector<int>& students, vector<int>& sandwiches) 
-    {
-        queue<int> q; 
-        int n=students.size();
-        int c=0;
-        int i=0;
-        for (const auto& elem : students) 
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+       int count[]={0,0};
+        for(auto i: students)
         {
-        q.push(elem);
+            count[i]=count[i]+1;
         }
-        while(q.size()>0&&c!=q.size())
+        for(auto s: sandwiches)
         {
-            if(q.front()==sandwiches[i])
-            {
-                c=0;
-                q.pop();
-                i++;
-            }
-            else
-            {
-               int x= q.front();
-               q.pop();
-               q.push(x);
-               c++;
-            }
+            if(count[s]==0) break;
+            count[s]=count[s]-1;
         }
-        return q.size();
+        return count[0]+count[1];
+        
     }
 };
