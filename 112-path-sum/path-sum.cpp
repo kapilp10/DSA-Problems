@@ -11,17 +11,27 @@
  */
 class Solution {
 public:
-    bool hasPathSum(TreeNode* root, int targetSum) {
+    bool dfs(TreeNode* root, int sum, int targetSum)
+    {
         if(!root)
         {
             return false;
         }
+        sum=sum+root->val;
         if(!root->left && !root->right)
         {
-            return targetSum==root->val;
+            if(targetSum==sum)
+            {
+                return true;
+            }
         }
-        bool leftSum = hasPathSum(root->left, targetSum-root->val);
-        bool rightSum = hasPathSum(root->right, targetSum-root->val);
-        return leftSum || rightSum;
+    bool left=dfs(root->left,sum,targetSum);
+    bool right=dfs(root->right,sum,targetSum);
+    return left||right;
     }
+    bool hasPathSum(TreeNode* root, int targetSum) 
+    {
+       return dfs(root,0,targetSum);
+    }
+
 };
