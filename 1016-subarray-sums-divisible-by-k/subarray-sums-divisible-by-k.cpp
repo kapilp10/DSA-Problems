@@ -13,7 +13,7 @@ public:
             int rem=prefixSum%k;
             if(rem<0)
             {
-                rem=(rem+k)%k;
+                rem=(rem+k);
             }
             if(prefixSumCount.find(rem)!=prefixSumCount.end())
             {
