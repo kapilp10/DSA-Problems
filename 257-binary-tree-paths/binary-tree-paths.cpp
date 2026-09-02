@@ -11,27 +11,27 @@
  */
 class Solution {
 public:
-   void binTreePath(TreeNode* node, vector<string>& res, string t)
-   {
+void dfs(TreeNode* node,vector<string>& res, string t)
+{
     t=t+to_string(node->val);
     if(node->left)
     {
-       binTreePath(node->left,res, t+"->");
+        dfs(node->left,res,t+"->");
     }
-    if(node->right) 
+    if(node->right)
     {
-        binTreePath(node->right,res, t+"->");
+        dfs(node->right,res,t+"->");
     }
-    if(!node->left && !node->right) 
+
+    if(!node->left && !node->right)
     {
         res.push_back(t);
     }
-    
-   }
+}
     vector<string> binaryTreePaths(TreeNode* root) 
     {
         vector<string> res;
-        binTreePath(root,res,"");
+        dfs(root,res,"");
         return res;
         
     }
