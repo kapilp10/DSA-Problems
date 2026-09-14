@@ -1,26 +1,30 @@
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> res;
-        if(nums.size()==1)
+    void backtrack(int start, vector<vector<int>>& res,vector<int>& nums)
+    {
+        if(start==nums.size())
         {
-            return {nums};
-        }
-
-        for(int i=0;i<nums.size();i++)
-        {
-            int n=nums.front();
-            nums.erase(nums.begin());
-
-            vector<vector<int>> perm=permute(nums);
-            for(auto i: perm)
+            vector<int> temp;
+            for(int i=0;i<nums.size();i++)
             {
-                i.push_back(n);
-                res.push_back(i);
+                temp.push_back(nums[i]);
             }
-            nums.push_back(n);
+            res.push_back(temp);
+            return;
         }
+
+        for(int i=start;i<nums.size();i++)
+        {
+            swap(nums[i],nums[start]);
+            backtrack(start+1,res,nums);
+            swap(nums[i],nums[start]);
+          
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) 
+    {
+        vector<vector<int>> res;
+        backtrack(0,res,nums);
         return res;
-        
     }
 };
