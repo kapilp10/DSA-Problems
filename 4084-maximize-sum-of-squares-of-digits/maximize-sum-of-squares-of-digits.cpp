@@ -11,7 +11,7 @@ public:
             sum-=curr;
             ans+=char('0'+curr);
         }
-        return sum==0 ? ans : "";
+        return ans;
         
     }
 };
